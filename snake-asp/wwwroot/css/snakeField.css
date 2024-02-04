@@ -1,0 +1,9 @@
+﻿.snaketable table {
+    border-radius: 2px;
+    border: 1px solid #011600;
+}
+.snaketable td {
+    width: 35px;
+    height: 35px;
+    border: 1px dashed #011600;
+}

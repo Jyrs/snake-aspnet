@@ -1,0 +1,28 @@
+﻿@model snake_asp.Models.Api.GetFieldDataModel
+
+<table>
+    @for (int rowCounter = 0; rowCounter < Model.FieldHeigth; rowCounter++)
+    {
+        <tr>
+
+            @for (int cellCounter = 0; cellCounter < Model.FieldWidth; cellCounter++)
+            {
+                @switch (Model.FieldData[rowCounter][cellCounter]) {                 
+
+                    case 1:
+                        <td style=" background-color: #e06666;">  </td>
+                        break;
+                    case 2:
+                        <td style=" background-color: #87f07f;">  </td>
+                        break;
+                    case 3:
+                        <td style=" background-color: #528416;">  </td>
+                        break;
+                    default:
+                        <td>  </td>
+                        break;
+                } 
+        }
+        </tr>
+    }
+</table>

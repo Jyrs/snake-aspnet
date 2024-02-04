@@ -1,0 +1,73 @@
+﻿@using snake_asp.Models.Api
+@model snake_asp.game.Game
+
+@section Head {
+    <script src="js/SnakeTableUpdater.js"> </script>
+    <script src="js/SnakeStatusUpdater.js"> </script>
+    <script src="js/SnakeStatusGetter.js"> </script>
+    <script>
+        let table_updater = new SnakeTableUpdater(20, "snakeTable");
+        table_updater.Start();
+        let status_updater = new SnakeStatusUpdater(50, "snakeStatus");
+        status_updater.Start();
+        let snakeStatusGetter = new SnakeStatusGetter(50);
+        snakeStatusGetter.Start();
+    </script>
+
+    <script>
+        document.addEventListener("keydown",snakeTableKeyDown)
+        let lastKeyPressed = undefined;
+        function snakeTableKeyDown(args) {
+            if (lastKeyPressed != args.key) {
+                switch (args.key) {
+                    case "ArrowUp":
+                        {
+                             lastKeyPressed = "ArrowDown";
+                            $.ajax("Api/GoUp")
+                            break;
+                        }
+                    case "ArrowDown":
+                        {
+                             lastKeyPressed = "ArrowUp";
+                            $.ajax("Api/GoDown")
+                            break;
+                        }
+                    case "ArrowLeft":
+                        {
+                              lastKeyPressed = "ArrowRight";
+                            $.ajax("Api/GoLeft")
+                            break;
+                        }
+                    case "ArrowRight":
+                        {
+                              lastKeyPressed = "ArrowLeft";
+                            $.ajax("Api/GoRigth")
+                            break;
+                        }
+                }
+               
+            }
+            console.log(args);
+        }
+    </script>
+}
+<div>
+        <h1> ТУТ ИГРА</h1>
+        <br />
+        <table>
+            <tr>
+                <td>
+                <div id="snakeTable" class="snaketable" tabindex="0">
+                            @await Html.PartialAsync("/Views/PageParts/SnakeTable.cshtml", new GetFieldDataModel(Model))
+                    </div>
+                </td>
+                <td>
+                     <div id="snakeStatus" class="snakeStatus">
+                            @await Html.PartialAsync("/Views/PageParts/SnakeStatus.cshtml", new GetStatusDataModel(Model))
+                     </div>
+                </td>
+            </tr>
+        </table>
+       
+
+</div>

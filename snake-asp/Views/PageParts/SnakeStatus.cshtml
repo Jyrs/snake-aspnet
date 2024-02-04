@@ -1,0 +1,45 @@
+﻿@model snake_asp.Models.Api.GetStatusDataModel
+@{
+    Layout = null;
+}
+
+<table>
+    <tr>
+        <td colspan=" 2"> <h3>Статистика</h3></td>
+    
+    <tr>
+        <td> Змейка жива:  - -</td>
+        <td>
+            @Model.IsSnakeDead;
+        </td>
+    </tr>
+    <tr>
+        <td> Змейка движется: - -</td>
+        <td>
+            @Model.IsSnakeMove;
+        </td>
+    </tr>
+    </tr>
+    <tr>
+        <td> Сьедено -</td>
+        <td>
+            @Model.SnakeSize;
+        </td>
+    </tr>
+    <tr>
+        <td> Очков заработано - </td>
+        <td>
+            @Model.SnakeScore;
+        </td>
+    </tr>
+    <tr>
+        <td> Время -  </td>
+        <td>
+            @Model.GameTime;
+        </td>
+    </tr>
+    <tr>
+        <td colspan=" 2">=============================================  </td>
+        
+    </tr>
+</table>
